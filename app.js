@@ -12,9 +12,21 @@ function printB(num) {
     console.log('something');
     return;
 }
+function addAndHandle(n1, n2, cb) {
+    var result = n1 + n2;
+    cb(result);
+}
 // Values can also be undefined/don't exist... (yet)
 // let someValue : undefined;
 printA(addTogether(5, 12));
+// Function types
 var combineValues;
+// We can create pointers to functions using variables.
 combineValues = addTogether;
+// This function expects 2 params. Given only 1 here. return type must also be a number 
+// combineValues = printA;
+// combineValues = 5;
 console.log(combineValues(8, 8));
+addAndHandle(10, 20, function (result) {
+    console.log(result);
+});
