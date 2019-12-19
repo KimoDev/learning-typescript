@@ -1,32 +1,18 @@
-// this functions return type is a number.
-// we do not explicity set the type :number, instead we SHOULD let TS infer the type
-function addTogether(n1, n2) {
-    return n1 + n2;
+// TS introduced unknown type. More restrictive and better than any type, due to type checking
+var userInput;
+var userName;
+// no errors. same as no type or any type.
+userInput = 5;
+userInput = 'Max';
+// Error because expects type string. 
+// Receives a unknown type, despite assigning a string ^ 
+// userName = userInput;
+// unknown 
+// Type checking allows this assignment, due to TS knowing inside the if it has to be a string.
+if (typeof userInput === 'string') {
+    userName = userInput;
 }
-// void return type. like C or Java. // Again we explicity set the return type, we SHOULD LET TS infer this.
-function printA(num) {
-    console.log('Result: ' + num);
+function generateError(message, code) {
+    throw { message: message, errorCode: code };
 }
-// Undefined is a type. A function that returns and nothing more.
-function printB(num) {
-    console.log('something');
-    return;
-}
-function addAndHandle(n1, n2, cb) {
-    var result = n1 + n2;
-    cb(result);
-}
-// Values can also be undefined/don't exist... (yet)
-// let someValue : undefined;
-printA(addTogether(5, 12));
-// Function types
-var combineValues;
-// We can create pointers to functions using variables.
-combineValues = addTogether;
-// This function expects 2 params. Given only 1 here. return type must also be a number 
-// combineValues = printA;
-// combineValues = 5;
-console.log(combineValues(8, 8));
-addAndHandle(10, 20, function (result) {
-    console.log(result);
-});
+generateError("Error", 500);
