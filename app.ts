@@ -1,19 +1,20 @@
-const add = (n1: number, n2: number, showResult: boolean, phrase: string) => {
+// This is not a JS object. 
+// In fact this is an object type.
+// Instead of key-value pairs like in a js object, we have key-type pairs
 
-  const result = n1 + n2;
-  
-  if(showResult) {
-    console.log(phrase + result);
-  } else {
-    return result;
-  }
-  
-};
+// const person: {
+//   name: string;
+//   age: number
+// } = {
+//   name: 'Kimo',
+//   age: 100
+// };
 
-const num1 = 5;
-const num2 = 2.8;
-const printResult = true;
-const resultPhrase = 'Result is: ';
+// Let typescript infer the types instead
+const person = {
+    name: 'Kimo',
+    age: 100
+  };
 
 
-add(num1, num2, printResult, resultPhrase);
+console.log(person.name);

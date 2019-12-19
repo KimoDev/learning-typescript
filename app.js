@@ -1,14 +1,5 @@
-var add = function (n1, n2, showResult, phrase) {
-    var result = n1 + n2;
-    if (showResult) {
-        console.log(phrase + result);
-    }
-    else {
-        return result;
-    }
+var person = {
+    name: 'Kimo',
+    age: 100
 };
-var num1 = 5;
-var num2 = 2.8;
-var printResult = true;
-var resultPhrase = 'Result is: ';
-add(num1, num2, printResult, resultPhrase);
+console.log(person);
