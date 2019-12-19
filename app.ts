@@ -11,16 +11,26 @@
 // };
 
 // Let typescript infer the types instead
-const person: {
-  name: string;
-  age: number;
-  hobbies: string[];
-  role: [number, string]; // tuple type
-} = {
+// const person: {
+//   name: string;
+//   age: number;
+//   hobbies: string[];
+//   role: [number, string]; // tuple type
+// } = {
+//     name: 'Kimo',
+//     age: 100,
+//     hobbies: ['Programming', 'Photography', 'Creation'],
+//     role: [2, 'author'] // tuple - fixed array of size 2 elements. TypeScript infers this as a UNION TYPE.
+//   };
+
+  // enum starting from 5. Can also assign custom values with each enum CONSTANT. 
+  enum Role { ADMIN = 5, READ_ONLY = 100, AUTHOR = 'Author'};
+
+  const person = {
     name: 'Kimo',
     age: 100,
     hobbies: ['Programming', 'Photography', 'Creation'],
-    role: [2, 'author'] // tuple - fixed array of size 2 elements. TypeScript infers this as a UNION TYPE.
+    role: Role.ADMIN
   };
 
   // Typescript wont catch this as an error at compilation time. (Possibly breaking)
@@ -38,4 +48,8 @@ const person: {
   for(const hobby of person.hobbies) {
     console.log(hobby.toUpperCase()); // type inference of hobby so we can called string methods without errors
     // console.log(hobby.map()); // ERROR: cannot call map() on a string value. Typescript infers the type and makes this check.
+  }
+
+  if (person.role === Role.ADMIN) {
+    console.log('user is logged in as a Admin');
   }
