@@ -43,6 +43,14 @@
   let favouriteLanguages: string[]; 
   favouriteLanguages = ['JavaScript', 'Java', 'TypeScript!']
 
+  // Any data type allows for any type to be assigned to that variable.
+  let anyType : any[];
+  anyType = [0, [1, 2, 3], 'anyanyany', true, { id: 0}]
+
+  // Any data type should be avoided. only in very specific cases, such as you don't know what kind of data will be stored.
+  // Hence we should use run time checks instead. such as If statements to check typeof data
+
+
   console.log(person.name);
 
   for(const hobby of person.hobbies) {
