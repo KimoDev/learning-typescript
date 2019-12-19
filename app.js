@@ -1,22 +1,20 @@
-// | symbolises union types
-var combine = function (input1, input2, resultConversion) {
-    var result;
-    if (typeof input1 === 'number' && typeof input2 === 'number' || resultConversion === 'as-number') {
-        result = +input1 + +input2;
-    }
-    else {
-        result = input1.toString() + input2.toString();
-    }
-    return result;
-    // if(resultConversion === 'as-number') {
-    //   return +result;
-    // } else {
-    //   return result.toString();
-    // }
-};
-var combinedAges = combine(30, 26, 'as-number');
-console.log(combinedAges);
-var combinedNames = combine('joseph', 'kimo', 'as-text');
-console.log(combinedNames);
-var combinedStringAges = combine('30', '26', 'as-number');
-console.log(combinedStringAges);
+// this functions return type is a number.
+// we do not explicity set the type :number, instead we SHOULD let TS infer the type
+function addTogether(n1, n2) {
+    return n1 + n2;
+}
+// void return type. like C or Java. // Again we explicity set the return type, we SHOULD LET TS infer this.
+function printA(num) {
+    console.log('Result: ' + num);
+}
+// Undefined is a type. A function that returns and nothing more.
+function printB(num) {
+    console.log('something');
+    return;
+}
+// Values can also be undefined/don't exist... (yet)
+// let someValue : undefined;
+printA(addTogether(5, 12));
+var combineValues;
+combineValues = addTogether;
+console.log(combineValues(8, 8));
