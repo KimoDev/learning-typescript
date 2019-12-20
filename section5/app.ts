@@ -46,9 +46,26 @@ class ITDepartment extends Department {
 }
 // Here is another example of a class inheriting from the Department super/base class.
 class AccountingDepartment extends Department {
+  private lastReport: string;
+
+  // This is a getter method.
+  get mostRecentReport() {
+    if(this.lastReport) {
+      return this.lastReport;
+    }
+    throw new Error('No Report Found!');
+  }
+
+  set mostRecentReport(value: string) {
+    if (!value) {
+      throw new Error('Please pass in a valid value!');
+    }
+    this.addReport(value);
+  }
   // The constructor should satisfy the params/args of the super constructor. Can also initalize new fields for this class too.
   constructor(id: string, private reports: string[]) {
     super(id, 'Accounting');
+    this.lastReport = reports[0];
   }
   // addEmployee exists in Department. However, we can overide the implementation by defining it again here.
   addEmployee(name: string) {
@@ -60,6 +77,7 @@ class AccountingDepartment extends Department {
 
   addReport(text: string) {
     this.reports.push(text);
+    this.lastReport = text;
   }
 
   printReports() {
@@ -82,7 +100,15 @@ console.log(programming);
 
 const accounting = new AccountingDepartment('D2', []);
 
+// we access the getter method/function as a property. Which will execute the getter method.
+// console.log(accounting.mostRecentReport);
+
+// we access the setter method as a property. We assign a value to pass into the setter method.
+accounting.mostRecentReport = 'THE LAST REPORT';
+
 accounting.addReport("We hit our annual target revenue");
+console.log(accounting.mostRecentReport);
+
 accounting.addEmployee('Naruto');
 accounting.addEmployee('Madara');
 accounting.printEmployeeInfo();

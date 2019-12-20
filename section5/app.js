@@ -62,8 +62,27 @@ var AccountingDepartment = /** @class */ (function (_super) {
     function AccountingDepartment(id, reports) {
         var _this = _super.call(this, id, 'Accounting') || this;
         _this.reports = reports;
+        _this.lastReport = reports[0];
         return _this;
     }
+    Object.defineProperty(AccountingDepartment.prototype, "mostRecentReport", {
+        // This is a getter method.
+        get: function () {
+            if (this.lastReport) {
+                return this.lastReport;
+            }
+            throw new Error('No Report Found!');
+        },
+        set: function (value) {
+            if (!value) {
+                throw new Error('Please pass in a valid value!');
+            }
+            this.addReport(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    // addEmployee exists in Department. However, we can overide the implementation by defining it again here.
     AccountingDepartment.prototype.addEmployee = function (name) {
         if (name === 'Naruto') {
             return;
@@ -72,6 +91,7 @@ var AccountingDepartment = /** @class */ (function (_super) {
     };
     AccountingDepartment.prototype.addReport = function (text) {
         this.reports.push(text);
+        this.lastReport = text;
     };
     AccountingDepartment.prototype.printReports = function () {
         console.log(this.reports);
@@ -88,7 +108,12 @@ programming.printEmployeeInfo();
 // displays the whole class and it's properties.
 console.log(programming);
 var accounting = new AccountingDepartment('D2', []);
+// we access the getter method/function as a property. Which will execute the getter method.
+// console.log(accounting.mostRecentReport);
+// we access the setter method as a property. We assign a value to pass into the setter method.
+accounting.mostRecentReport = 'THE LAST REPORT';
 accounting.addReport("We hit our annual target revenue");
+console.log(accounting.mostRecentReport);
 accounting.addEmployee('Naruto');
 accounting.addEmployee('Madara');
 accounting.printEmployeeInfo();
