@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './TodoList.css';
 // without a generic interface(propTypes) the component would not see the props passed to it from App.tsx.
 interface propTypes {
   items: {id: string, text: string}[];
