@@ -6,6 +6,7 @@
 
 // abstract classes are good to enforce common functionality that is shared between all classes that inherit from the base class.
 // Also they are good as they allow the definition of the method. But each class has its own implementation of the method.
+// You cannot instantiate abstract classes.
 
 abstract class Department {
   static fiscalYear = 2020;
@@ -63,6 +64,7 @@ class ITDepartment extends Department {
 // Here is another example of a class inheriting from the Department super/base class.
 class AccountingDepartment extends Department {
   private lastReport: string;
+  private static instance: AccountingDepartment;
 
   // This is a getter method.
   get mostRecentReport() {
@@ -79,9 +81,16 @@ class AccountingDepartment extends Department {
     this.addReport(value);
   }
   // The constructor should satisfy the params/args of the super constructor. Can also initalize new fields for this class too.
-  constructor(id: string, private reports: string[]) {
+  private constructor(id: string, private reports: string[]) {
     super(id, 'Accounting');
     this.lastReport = reports[0];
+  }
+  
+  static getInstance() {
+    if (this.instance) {
+      return AccountingDepartment.instance;
+    }
+    return new AccountingDepartment('d2', []);
   }
   // addEmployee exists in Department. However, we can overide the implementation by defining it again here.
   addEmployee(name: string) {
@@ -124,7 +133,10 @@ programming.printEmployeeInfo();
 // displays the whole class and it's properties.
 console.log(programming);
 
-const accounting = new AccountingDepartment('D2', []);
+// This will throw an error. As AccountingDepartment has a private constructor, meaning we can only have 1 instance of the class.
+// const accounting = new AccountingDepartment('D2', []);
+// However, we can get around this by getting the static instance of the class. 
+const accounting = AccountingDepartment.getInstance();
 
 // we access the getter method/function as a property. Which will execute the getter method.
 // console.log(accounting.mostRecentReport);
