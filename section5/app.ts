@@ -1,13 +1,16 @@
 // An interface describes how an object should look like or in other words its structure.
-// You can add readonly modifier.. But not Public or Private modifiers.
-interface Greetable {
-  readonly name: string;
-
+// You can extend/inherit multiple interfaces. As they are just being merged together in the end. Unlike classes single-inheritance
+interface Greetable extends Named {
   greet(phrase: string): void;
 }
 
+// You can add readonly modifier.. But not Public or Private modifiers.
+interface Named {
+  readonly name: string;
+}
+
+// This class MUST adhear to the contract/structure of the interface/s. 
 // You can implement multiple interfaces. Unlike inheritance.
-// This class MUST adhear to the contract/structure of the interface. 
 class Person implements Greetable {
   name : string;
   age = 30;
