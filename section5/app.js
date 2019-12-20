@@ -28,6 +28,9 @@ var Department = /** @class */ (function () {
         // this.name = name;
         // this.id = id;
     }
+    Department.createEmployee = function (name) {
+        return { name: name };
+    };
     // class method with special this param
     Department.prototype.describe = function () {
         console.log("Department (" + this.id + "): " + this.name);
@@ -41,6 +44,7 @@ var Department = /** @class */ (function () {
         console.log(this.employees.length);
         console.log(this.employees);
     };
+    Department.fiscalYear = 2020;
     return Department;
 }());
 // extends symbolises that we can inherit functionality from a class. Multiple-class inheritance is not allowed. 
@@ -98,6 +102,8 @@ var AccountingDepartment = /** @class */ (function (_super) {
     };
     return AccountingDepartment;
 }(Department));
+var employee1 = Department.createEmployee('TheRealKimo');
+console.log(employee1, Department.fiscalYear);
 // Initialise an object/instance of a class.
 var programming = new ITDepartment("D1", ['Kimo']);
 programming.addEmployee('Joseph');

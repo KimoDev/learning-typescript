@@ -5,6 +5,7 @@
 // Classes also allow us to create multiple instances from it.
 
 class Department {
+  static fiscalYear = 2020;
   // field/property of a class.
   // private readonly id: string;
   // private name : string;
@@ -15,6 +16,12 @@ class Department {
   constructor(private readonly id: string, public name: string) {
     // this.name = name;
     // this.id = id;
+    // console.log(this.fiscalYear); Static values cannot be accessed from within an instance of a class (this).
+    // console.log(Department.fiscalYear); This would however work and be valid.
+  }
+
+  static createEmployee(name: string) {
+    return {name: name};
   }
 
   // class method with special this param
@@ -84,6 +91,12 @@ class AccountingDepartment extends Department {
     console.log(this.reports);
   }
 }
+
+
+// Here we show static methods & properties being used.
+const employee1 = Department.createEmployee('TheRealKimo')
+console.log(employee1, Department.fiscalYear);
+
 
 // Initialise an object/instance of a class.
 const programming = new ITDepartment("D1", ['Kimo']);
