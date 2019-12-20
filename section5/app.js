@@ -23,6 +23,7 @@ var Department = /** @class */ (function () {
         // field/property of a class.
         // private readonly id: string;
         // private name : string;
+        // protected is a modifier that allows (other than itself) classes that inherit it to access & modify the field.
         this.employees = [];
         // this.name = name;
         // this.id = id;
@@ -63,6 +64,12 @@ var AccountingDepartment = /** @class */ (function (_super) {
         _this.reports = reports;
         return _this;
     }
+    AccountingDepartment.prototype.addEmployee = function (name) {
+        if (name === 'Naruto') {
+            return;
+        }
+        this.employees.push(name); // this only works if the employees field has the protected modifier.
+    };
     AccountingDepartment.prototype.addReport = function (text) {
         this.reports.push(text);
     };
@@ -82,6 +89,9 @@ programming.printEmployeeInfo();
 console.log(programming);
 var accounting = new AccountingDepartment('D2', []);
 accounting.addReport("We hit our annual target revenue");
+accounting.addEmployee('Naruto');
+accounting.addEmployee('Madara');
+accounting.printEmployeeInfo();
 accounting.printReports();
 programming.describe();
 // js object that has a prop/value. The value refers to a class.method

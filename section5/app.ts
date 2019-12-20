@@ -8,7 +8,8 @@ class Department {
   // field/property of a class.
   // private readonly id: string;
   // private name : string;
-  private employees: string[] = [];
+  // protected is a modifier that allows (other than itself) classes that inherit it to access & modify the field.
+  protected employees: string[] = [];
 
   // initialize object instances through the constructor. We can also add modifers inside the header to initialize class fields
   constructor(private readonly id: string, public name: string) {
@@ -49,6 +50,13 @@ class AccountingDepartment extends Department {
   constructor(id: string, private reports: string[]) {
     super(id, 'Accounting');
   }
+  // addEmployee exists in Department. However, we can overide the implementation by defining it again here.
+  addEmployee(name: string) {
+    if (name === 'Naruto') {
+      return;
+    }
+    this.employees.push(name); // this only works if the employees field has the protected modifier.
+  }
 
   addReport(text: string) {
     this.reports.push(text);
@@ -75,6 +83,9 @@ console.log(programming);
 const accounting = new AccountingDepartment('D2', []);
 
 accounting.addReport("We hit our annual target revenue");
+accounting.addEmployee('Naruto');
+accounting.addEmployee('Madara');
+accounting.printEmployeeInfo();
 accounting.printReports();
 
 programming.describe();
