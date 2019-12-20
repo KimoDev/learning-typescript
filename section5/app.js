@@ -4,13 +4,19 @@
 // Classes also allow us to create multiple instances from it.
 var Department = /** @class */ (function () {
     // 
-    function Department(name) {
-        this.employees = [];
+    function Department(id, name) {
+        this.id = id;
         this.name = name;
+        // field/property of a class.
+        // private id: string;
+        // private name : string;
+        this.employees = [];
+        // this.name = name;
+        // this.id = id;
     }
     // class method with special this param
     Department.prototype.describe = function () {
-        console.log('Department: ' + this.name);
+        console.log("Department (" + this.id + "): " + this.name);
     };
     Department.prototype.addEmployee = function (employee) {
         this.employees.push(employee);
@@ -22,7 +28,7 @@ var Department = /** @class */ (function () {
     return Department;
 }());
 // Initialise an object/instance of a class.
-var programming = new Department("Joseph");
+var programming = new Department("D1", "Programming");
 programming.addEmployee('Joseph');
 programming.addEmployee('Kimo');
 programming.printEmployeeInfo();

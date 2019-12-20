@@ -6,17 +6,19 @@
 
 class Department {
   // field/property of a class.
-  name : string;
+  // private id: string;
+  // private name : string;
   private employees: string[] = [];
 
-  // 
-  constructor(name: string) {
-    this.name = name;
+  // initialize object instances through the constructor. We can also add modifers inside the header to initialize class fields
+  constructor(private id: string, public name: string) {
+    // this.name = name;
+    // this.id = id;
   }
 
   // class method with special this param
   describe(this: Department) {
-    console.log('Department: ' + this.name)
+    console.log(`Department (${this.id}): ${this.name}`);
   }
 
   addEmployee(employee: string) {
@@ -30,7 +32,7 @@ class Department {
 }
 
 // Initialise an object/instance of a class.
-const programming = new Department("Joseph");
+const programming = new Department("D1", "Programming");
 
 programming.addEmployee('Joseph');
 programming.addEmployee('Kimo');
