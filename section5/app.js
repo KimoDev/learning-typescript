@@ -27,13 +27,18 @@ var Department = /** @class */ (function () {
         this.employees = [];
         // this.name = name;
         // this.id = id;
+        // console.log(this.fiscalYear); Static values cannot be accessed from within an instance of a class (this).
+        // console.log(Department.fiscalYear); This would however work and be valid.
     }
+    Object.defineProperty(Department.prototype, "getID", {
+        get: function () {
+            return this.id;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Department.createEmployee = function (name) {
         return { name: name };
-    };
-    // class method with special this param
-    Department.prototype.describe = function () {
-        console.log("Department (" + this.id + "): " + this.name);
     };
     Department.prototype.addEmployee = function (employee) {
         // this wont work, as id is a readonly property and cannot be modified.
@@ -57,6 +62,9 @@ var ITDepartment = /** @class */ (function (_super) {
         _this.admins = admins;
         return _this;
     }
+    ITDepartment.prototype.describe = function () {
+        console.log('IT DEPARTMENT - ID: ' + this.getID);
+    };
     return ITDepartment;
 }(Department));
 // Here is another example of a class inheriting from the Department super/base class.
@@ -100,8 +108,12 @@ var AccountingDepartment = /** @class */ (function (_super) {
     AccountingDepartment.prototype.printReports = function () {
         console.log(this.reports);
     };
+    AccountingDepartment.prototype.describe = function () {
+        console.log('ACCOUNTING DEPARTMENT - ID: ' + this.getID);
+    };
     return AccountingDepartment;
 }(Department));
+// Here we show static methods & properties being used.
 var employee1 = Department.createEmployee('TheRealKimo');
 console.log(employee1, Department.fiscalYear);
 // Initialise an object/instance of a class.
@@ -124,6 +136,7 @@ accounting.addEmployee('Naruto');
 accounting.addEmployee('Madara');
 accounting.printEmployeeInfo();
 accounting.printReports();
+accounting.describe();
 programming.describe();
 // js object that has a prop/value. The value refers to a class.method
 var programmingCopy = { describe: programming.describe };

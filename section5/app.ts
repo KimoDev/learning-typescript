@@ -4,7 +4,10 @@
 // Classes are blueprints for objects, by defining properties and methods they have access to.
 // Classes also allow us to create multiple instances from it.
 
-class Department {
+// abstract classes are good to enforce common functionality that is shared between all classes that inherit from the base class.
+// Also they are good as they allow the definition of the method. But each class has its own implementation of the method.
+
+abstract class Department {
   static fiscalYear = 2020;
   // field/property of a class.
   // private readonly id: string;
@@ -20,14 +23,17 @@ class Department {
     // console.log(Department.fiscalYear); This would however work and be valid.
   }
 
+  get getID() {
+    return this.id;
+  }
+
   static createEmployee(name: string) {
     return {name: name};
   }
 
-  // class method with special this param
-  describe(this: Department) {
-    console.log(`Department (${this.id}): ${this.name}`);
-  }
+  // An abstract class so sub-classes can use but with their own implementation.
+  abstract describe(this: Department): void;
+
 
   addEmployee(employee: string) {
     // this wont work, as id is a readonly property and cannot be modified.
@@ -49,6 +55,9 @@ class ITDepartment extends Department {
     super(id, 'IT');
     this.admins = admins;
 
+  }
+  describe() {
+    console.log('IT DEPARTMENT - ID: ' + this.getID);
   }
 }
 // Here is another example of a class inheriting from the Department super/base class.
@@ -90,6 +99,10 @@ class AccountingDepartment extends Department {
   printReports() {
     console.log(this.reports);
   }
+
+  describe() {
+    console.log('ACCOUNTING DEPARTMENT - ID: ' + this.getID);
+  }
 }
 
 
@@ -127,7 +140,9 @@ accounting.addEmployee('Madara');
 accounting.printEmployeeInfo();
 accounting.printReports();
 
+accounting.describe();
 programming.describe();
+
 
 // js object that has a prop/value. The value refers to a class.method
 const programmingCopy = { describe: programming.describe };
