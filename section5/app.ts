@@ -1,20 +1,28 @@
-// An interface describes how an object should look like
-interface Person {
+// An interface describes how an object should look like or in other words its structure.
+interface Greetable {
   name: string;
-  age: number;
 
   greet(phrase: string): void;
 }
 
-let user1: Person;
+// You can implement multiple interfaces. Unlike inheritance.
+// This class MUST adhear to the contract/structure of the interface. 
+class Person implements Greetable {
+  name : string;
+  age = 30;
 
-// valid object as it satisifes the properties of the interface
-user1 = {
-  name: 'Kimo',
-  age: 100,
+  constructor(name: string) {
+    this.name = name;
+  }
   greet(phrase: string) {
     console.log(phrase + ' ' + this.name);
   }
-};
+}
+
+let user1: Greetable;
+
+// valid object as it satisifes the properties of the interface
+user1 = new Person('Joseph');
 
 user1.greet('Hi there - i am');
+console.log(user1);
