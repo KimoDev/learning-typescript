@@ -9,6 +9,19 @@ interface Named {
   readonly name: string;
 }
 
+// recap of function types
+// type addFunction = (a: number, b: number) => number;
+// let add : addFunction;
+
+// Intefaces as Function types
+interface AddFunction {
+  // sort of like an anonymous function. Probably less common, but does exist.
+  (a: number, b: number) : number;
+}
+let add : AddFunction;
+
+add = (n1: number, n2: number) => n1 + n2;
+
 // This class MUST adhear to the contract/structure of the interface/s. 
 // You can implement multiple interfaces. Unlike inheritance.
 class Person implements Greetable {
