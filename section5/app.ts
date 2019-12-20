@@ -7,6 +7,7 @@
 class Department {
   // field/property of a class.
   name : string;
+  private employees: string[] = [];
 
   // 
   constructor(name: string) {
@@ -17,10 +18,28 @@ class Department {
   describe(this: Department) {
     console.log('Department: ' + this.name)
   }
+
+  addEmployee(employee: string) {
+    this.employees.push(employee);
+  }
+
+  printEmployeeInfo() {
+    console.log(this.employees.length);
+    console.log(this.employees);
+  }
 }
 
 // Initialise an object/instance of a class.
 const programming = new Department("Joseph");
+
+programming.addEmployee('Joseph');
+programming.addEmployee('Kimo');
+programming.printEmployeeInfo();
+
+// not allowed since the employees visiblity modifer is private. if it was public it would be fine.
+// programming.employees[2] = 'new employee';
+
+
 
 programming.describe();
 
@@ -31,5 +50,5 @@ const programmingCopy = { describe: programming.describe };
 // we get undefined due to 'this' keyword referring to programmingCopy, rather than the Department class and it can't find a name variable.
 // programmingCopy.describe(); error, programmingCopy needs a name prop
 
-const programmingCopy2 = { name: 'Kimo', describe: programming.describe };
-programmingCopy2.describe(); // this now works perfectly fine.
+// const programmingCopy2 = { name: 'Kimo', describe: programming.describe };
+// programmingCopy2.describe(); // this now works perfectly fine.
