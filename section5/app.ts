@@ -6,12 +6,12 @@
 
 class Department {
   // field/property of a class.
-  // private id: string;
+  // private readonly id: string;
   // private name : string;
   private employees: string[] = [];
 
   // initialize object instances through the constructor. We can also add modifers inside the header to initialize class fields
-  constructor(private id: string, public name: string) {
+  constructor(private readonly id: string, public name: string) {
     // this.name = name;
     // this.id = id;
   }
@@ -22,6 +22,8 @@ class Department {
   }
 
   addEmployee(employee: string) {
+    // this wont work, as id is a readonly property and cannot be modified.
+    // this.id = 'd2';
     this.employees.push(employee);
   }
 
