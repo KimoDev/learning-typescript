@@ -33,8 +33,34 @@ class Department {
   }
 }
 
+// extends symbolises that we can inherit functionality from a class. Multiple-class inheritance is not allowed. 
+class ITDepartment extends Department {
+  admins: string[];
+  constructor(id: string, admins: string[]) {
+    // super is needed in any class constructor that inherits from a super/base class.
+    super(id, 'IT');
+    this.admins = admins;
+
+  }
+}
+// Here is another example of a class inheriting from the Department super/base class.
+class AccountingDepartment extends Department {
+  // The constructor should satisfy the params/args of the super constructor. Can also initalize new fields for this class too.
+  constructor(id: string, private reports: string[]) {
+    super(id, 'Accounting');
+  }
+
+  addReport(text: string) {
+    this.reports.push(text);
+  }
+
+  printReports() {
+    console.log(this.reports);
+  }
+}
+
 // Initialise an object/instance of a class.
-const programming = new Department("D1", "Programming");
+const programming = new ITDepartment("D1", ['Kimo']);
 
 programming.addEmployee('Joseph');
 programming.addEmployee('Kimo');
@@ -43,7 +69,13 @@ programming.printEmployeeInfo();
 // not allowed since the employees visiblity modifer is private. if it was public it would be fine.
 // programming.employees[2] = 'new employee';
 
+// displays the whole class and it's properties.
+console.log(programming);
 
+const accounting = new AccountingDepartment('D2', []);
+
+accounting.addReport("We hit our annual target revenue");
+accounting.printReports();
 
 programming.describe();
 
