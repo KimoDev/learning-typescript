@@ -1,6 +1,7 @@
 // An interface describes how an object should look like or in other words its structure.
+// You can add readonly modifier.. But not Public or Private modifiers.
 interface Greetable {
-  name: string;
+  readonly name: string;
 
   greet(phrase: string): void;
 }
@@ -20,6 +21,7 @@ class Person implements Greetable {
 }
 
 let user1: Greetable;
+// user1.name = 'Kimo'; Error as name cannot be modified after being set due to readonly modifier on the property.
 
 // valid object as it satisifes the properties of the interface
 user1 = new Person('Joseph');
