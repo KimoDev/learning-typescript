@@ -1,7 +1,16 @@
 // typescript does not know about the nodejs require function. Hence, we need to install @types/node
 // const express = require('express');
-import express from 'express';
+import express, { Request, Response, NextFunction} from 'express';
+
+import todoRoutes from './routes/todos';
 
 const app = express();
+
+// middleware
+app.use('/todos', todoRoutes);
+// error handling middleware function
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  res.status(500).json({message: err.message});
+});
 
 app.listen(3000)
