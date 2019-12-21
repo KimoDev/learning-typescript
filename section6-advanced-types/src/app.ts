@@ -129,3 +129,26 @@ function moveAnimal(animal: Animal) {
 }
 
 moveAnimal({type: 'bird', flyingSpeed: 100});
+
+// Type casting - helps us tell ts that some value is of a specific type
+// when ts cannot detect it on its own. For example, an element in the DOM.
+
+// TypeScript knows paragraph a HTMLParagraphElement type
+const paragraph  = document.querySelector('p');
+// TypeScript only knows that this is aa HTMLElement.
+const paragraphWithID = document.getElementById('message');
+
+// Type casting version 1. ! also tells typescript that this will never return null.
+const userInput = <HTMLInputElement>document.getElementById('user-input')! ;
+// Type casting version 2 - mainly for react
+const userInput2 = document.getElementById('user-input')! as HTMLInputElement ;
+
+userInput.value = 'hi there!';
+userInput2.value = 'boom!'
+
+// Optionally to not use ! we could use an if to check it exists..
+const userInput3 = document.getElementById('user-input');
+if(userInput3) {
+  // we need to wrap our cast if we want to access props on it.
+  (userInput3 as HTMLInputElement).value = 'Master of TypeScript';
+}
