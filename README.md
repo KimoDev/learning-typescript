@@ -1,7 +1,10 @@
 
-## Section 2 Reference: Typescript Basics & Basic Types
+## Section 2 References: Typescript Basics & Basic Types
  - Basic types in typescript: https://www.typescriptlang.org/docs/handbook/basic-types.html
 
+## Section 4 References: Next-Gen Javascript & TypeScript
+ - This section was skipped, due to me having proficent knowledge in this area.
+ - For now you can learn more about Next-Gen JS over at this article: https://medium.com/@aminebenkeroum/get-started-with-next-gen-javascript-868e6f350e49
 ## Section 5 References: Classes & Interfaces
  - Classes in JS: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
  - Interfaces in TS: https://www.typescriptlang.org/docs/handbook/interfaces.html
