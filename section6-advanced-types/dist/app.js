@@ -1,4 +1,5 @@
 "use strict";
+var _a, _b;
 // Any object of type ElevatedEmployee must satisfy properties of Admin & Employee.
 var e1 = {
     name: 'joseph',
@@ -18,6 +19,16 @@ function add(a, b) {
 // Without function overloads, result would be of type Combinable, which is a problem if we wish to call specific type methods on it like split.
 var result = add('Joseph', 'Kimo');
 result.split(' '); // this can only be called on a string.
+// Start of Optional Chaining
+// Getting data from a source where we don't know if a certain prop exists
+var fetchedUserData = {
+    id: 'u1',
+    name: 'Kimo',
+    job: { title: 'CEO', description: 'Im The owner b*tch' }
+};
+// Javascript way to check if a prop exists
+// console.log(fetchedUserData.job && fetchedUserData.job.title);
+console.log((_b = (_a = fetchedUserData) === null || _a === void 0 ? void 0 : _a.job) === null || _b === void 0 ? void 0 : _b.title); // typescript way to check if a property exists on an object
 function printEmployeeInfo(emp) {
     // shouldn't be a problem since both object types have a name.
     console.log('Name: ' + emp.name);

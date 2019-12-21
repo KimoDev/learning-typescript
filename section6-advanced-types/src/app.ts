@@ -45,6 +45,17 @@ function add(a: Combinable, b: Combinable) {
 const result = add('Joseph', 'Kimo');
 result.split(' '); // this can only be called on a string.
 
+// Start of Optional Chaining
+// Getting data from a source where we don't know if a certain prop exists
+const fetchedUserData = {
+  id: 'u1',
+  name: 'Kimo',
+  job: { title: 'CEO', description: 'Im The owner b*tch'}
+};
+// Javascript way to check if a prop exists
+// console.log(fetchedUserData.job && fetchedUserData.job.title);
+console.log(fetchedUserData?.job?.title); // typescript way to check if a property exists on an object
+
 // Custom Union type using our Object types
 type UnknownEmployee = Employee | Admin;
 
