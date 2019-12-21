@@ -56,6 +56,11 @@ const fetchedUserData = {
 // console.log(fetchedUserData.job && fetchedUserData.job.title);
 console.log(fetchedUserData?.job?.title); // typescript way to check if a property exists on an object
 
+const userData = '';
+
+const storedData = userData || 'DEFAULT'; // fallback is used. '' counts as falsy.
+// nullish coalescing operator use case
+const storedData2 = userData ?? 'DEFAULT'; // instead we can use this
 // Custom Union type using our Object types
 type UnknownEmployee = Employee | Admin;
 

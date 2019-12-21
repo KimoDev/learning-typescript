@@ -29,6 +29,10 @@ var fetchedUserData = {
 // Javascript way to check if a prop exists
 // console.log(fetchedUserData.job && fetchedUserData.job.title);
 console.log((_b = (_a = fetchedUserData) === null || _a === void 0 ? void 0 : _a.job) === null || _b === void 0 ? void 0 : _b.title); // typescript way to check if a property exists on an object
+var userData = '';
+var storedData = userData || 'DEFAULT'; // fallback is used. '' counts as falsy.
+// nullish coalescing operator use case
+var storedData2 = (userData !== null && userData !== void 0 ? userData : 'DEFAULT'); // instead we can use this
 function printEmployeeInfo(emp) {
     // shouldn't be a problem since both object types have a name.
     console.log('Name: ' + emp.name);
