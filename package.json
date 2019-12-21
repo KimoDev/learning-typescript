@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "lite-server --baseDir ./section5/"
+    "start": "lite-server --baseDir ./section6-advanced-types/dist"
   },
   "author": "",
   "license": "ISC",

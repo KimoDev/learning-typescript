@@ -9,6 +9,9 @@
  - Classes in JS: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
  - Interfaces in TS: https://www.typescriptlang.org/docs/handbook/interfaces.html
 
+## Section 6 References: Advanced Types - Type Casting & Type Guards
+ - Advanced Types: https://www.typescriptlang.org/docs/handbook/advanced-types.html
+
 ## Section 14 References: Using React with Typescript
  - Official React Docs: https://reactjs.org/docs/getting-started.html
  - Adding typescript to react apps (CRA): https://create-react-app.dev/docs/adding-typescript/
