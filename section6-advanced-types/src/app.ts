@@ -152,3 +152,17 @@ if(userInput3) {
   // we need to wrap our cast if we want to access props on it.
   (userInput3 as HTMLInputElement).value = 'Master of TypeScript';
 }
+
+// Start of index types
+
+// We want to be able to use a flexible error container to handle different forms & fields on a webpage.
+interface ErrorContainer { // { email: 'Not a vaalid email', username: 'Must start with a character' } <- not flexible for different forms
+  // index type
+  // id: string; // has to be string due to our index type. (consequence)
+  [prop: string]: string; // we don't know the name of the string property. but we know its value is a string type.
+}
+// The error container gives us the flexibility to add any string type property.
+const errorBag: ErrorContainer = {
+  email: 'Not a valid email',
+  username: 'Must start with a capital character'
+} 

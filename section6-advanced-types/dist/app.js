@@ -100,3 +100,8 @@ if (userInput3) {
     // we need to wrap our cast if we want to access props on it.
     userInput3.value = 'Master of TypeScript';
 }
+// The error container gives us the flexibility to add any string type property.
+var errorBag = {
+    email: 'Not a valid email',
+    username: 'Must start with a capital character'
+};
