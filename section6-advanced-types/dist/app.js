@@ -15,6 +15,9 @@ function add(a, b) {
     // else add them as of type numbers.
     return a + b;
 }
+// Without function overloads, result would be of type Combinable, which is a problem if we wish to call specific type methods on it like split.
+var result = add('Joseph', 'Kimo');
+result.split(' '); // this can only be called on a string.
 function printEmployeeInfo(emp) {
     // shouldn't be a problem since both object types have a name.
     console.log('Name: ' + emp.name);

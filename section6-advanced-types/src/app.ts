@@ -25,6 +25,12 @@ type Numeric = number | boolean;
 // Universal is of type number because it is the only intersection between the two types ^
 type Universal = Combinable & Numeric
 
+// start of Function Overloads.
+// A function overload allows us to define type variants of what a function should return.
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+function add(a: number, b: string): string;
+function add(a: string, b: number): string;
 // Start of type guards here 
 function add(a: Combinable, b: Combinable) {
   // This is called a type guard using typeof.
@@ -35,6 +41,10 @@ function add(a: Combinable, b: Combinable) {
   // else add them as of type numbers.
   return a+b;
 }
+// Without function overloads, result would be of type Combinable, which is a problem if we wish to call specific type methods on it like split.
+const result = add('Joseph', 'Kimo');
+result.split(' '); // this can only be called on a string.
+
 // Custom Union type using our Object types
 type UnknownEmployee = Employee | Admin;
 
