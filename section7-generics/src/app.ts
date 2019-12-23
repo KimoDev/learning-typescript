@@ -106,3 +106,26 @@ objStorage.addItem({name: 'Kimo'});
 objStorage.removeItem({name: 'joseph'}); // this doesnt work with objects. Because objects are reference types.
 objStorage.removeItem(josephObj); // this instead should work. as we are storing the object and not pointing to the ref.
 console.log(objStorage.getItems());
+
+
+// Start of Generic Utility Types
+
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+function createCourseGoal(title: string, description: string, date: Date): CourseGoal {
+  // Partial is a built in type. Which makes all the properties of a generic type optional. In this case our object type(interface).
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  return courseGoal as CourseGoal; // we cast the type here as we are returning a CourseGoal and not a partial in the end.
+}
+
+// Restrict to only read only and not modify elements.
+const names: Readonly<string[]> = ['Joseph', 'Kimo'];
+// names.push('Obi Wan Kenobi');
+// names.pop();

@@ -53,4 +53,12 @@ objStorage.addItem({ name: 'Kimo' });
 objStorage.removeItem({ name: 'joseph' });
 objStorage.removeItem(josephObj);
 console.log(objStorage.getItems());
+function createCourseGoal(title, description, date) {
+    let courseGoal = {};
+    courseGoal.title = title;
+    courseGoal.description = description;
+    courseGoal.completeUntil = date;
+    return courseGoal;
+}
+const names = ['Joseph', 'Kimo'];
 //# sourceMappingURL=app.js.map
