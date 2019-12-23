@@ -5,4 +5,5 @@
 ## Generating tsconfig.json file
 - Problem: Having more than 1 .ts file in a project and needing to compile multiple .ts files
 - Solution: Generating a ts config file by running tsc --init
-  - We then can run tsc to compile all .ts files in the project. Also tsc -w will watch changes across all project changes.
+  - We then can run tsc to compile all .ts files in the project. 
+  - Also tsc -w will watch changes across all project changes.
