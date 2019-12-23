@@ -62,5 +62,16 @@
 
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
-  }
+  },
+  "exclude": [ // Exclude included files to compile to javascript.
+    "node_modules", // we should not compile node modules. node_modules by default is ignored anyway ONLY IF WE DON'T SPECIFY exclude.
+    "*.dev.ts" // wildcard. all files that end in .dev.ts will not be compiled.
+  ],
+  // "include": [
+  //   "app.ts",
+  //   "analytics.ts"
+  // ]
+  // "files": [ // individual files we wish to compile. mainly for smaller projects and wont really be used as often.
+  //   "app.ts"
+  // ]
 }
