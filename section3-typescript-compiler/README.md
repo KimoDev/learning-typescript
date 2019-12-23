@@ -18,3 +18,4 @@ Typescripts compiler settings are configured through the tsconfig.json. Despite 
 - sourceMap: A boolean value to tell the compiler to generate a .map.js file. In order to help debugging complex js files.
 - outDir: A path to tell typescript where compiled js files should be output to. Usually in a 'dist' directory.
 - rootDir: A path to tell typescript where to look for directories/files to compile.
+- noEmitOnError: A boolean value, which tells typescript if there are errors then do not output a js file. (Default = false)
