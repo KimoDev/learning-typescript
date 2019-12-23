@@ -9,7 +9,7 @@
   - Also tsc -w will watch changes across all project changes.
 
 ## Properties of tsconfig.json
-Typescripts compiler settings are configured through the tsconfig.json. Despite the file itself explaining what each property does, i will list some of the main key important properties here.
+Typescripts compiler settings are configured through the tsconfig.json. Despite the file itself explaining what each property does, i will list the main key important properties here.
 - target: The target javascript version you wish to compile your typescript too.
 - lib: Library files that should be included during compilation. such as 'dom'. Which is already a default value by TS.
 - allowJs: a boolean value to allow javascript files to be compiled. such as vanilla js files.
@@ -19,3 +19,4 @@ Typescripts compiler settings are configured through the tsconfig.json. Despite 
 - outDir: A path to tell typescript where compiled js files should be output to. Usually in a 'dist' directory.
 - rootDir: A path to tell typescript where to look for directories/files to compile.
 - noEmitOnError: A boolean value, which tells typescript if there are errors then do not output a js file. (Default = false)
+- noImplicitAny: A boolean value to raise errors if a values type is implicity set as any.
