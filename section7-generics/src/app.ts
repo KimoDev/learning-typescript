@@ -26,7 +26,8 @@
 
 // This function merges two objects together. 
 // The generic types allow us to return the intersection of specific types, rather than an unknown object.
-function merge<T, U>(objA: T, objB: U) {
+// extends object means we are setting a type constraint. We could extend our own custom type or interface too.
+function merge<T extends object, U extends object>(objA: T, objB: U) {
   return Object.assign(objA, objB);
 }
 
