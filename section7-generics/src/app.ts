@@ -62,3 +62,47 @@ console.log(countAndDescribe('Hi there!'));
 function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U) {
   return obj[key];
 }
+
+// Start of generic classes
+// We might not care about the type of data we are storing.
+// therefore we can use generics, so we can create different instances for different types of data.
+class DataStorage<T> {
+  private data: T[] = [];
+
+  addItem(item: T) {
+    this.data.push(item);
+  }
+
+  removeItem(item: T) {
+    if(this.data.indexOf(item) === -1) {
+      return;
+    }
+    this.data.splice(this.data.indexOf(item), 1);
+  }
+
+  getItems() {
+    return [...this.data];
+  }
+}
+
+const textStorage = new DataStorage<string>();
+
+textStorage.addItem('Jeff');
+textStorage.addItem('Joseph');
+textStorage.addItem('Kimo');
+textStorage.removeItem('Jeff');
+
+console.log(textStorage.getItems());
+// Generics give us more flexibility, yet still strongly typed systems.
+const numberStorage = new DataStorage<number>();
+const universalStorage = new DataStorage<number | string>();
+
+
+const objStorage = new DataStorage<object>();
+const josephObj = {name: 'joseph'}
+objStorage.addItem(josephObj);
+objStorage.addItem({name: 'Kimo'});
+// .. do some stuff
+objStorage.removeItem({name: 'joseph'}); // this doesnt work with objects. Because objects are reference types.
+objStorage.removeItem(josephObj); // this instead should work. as we are storing the object and not pointing to the ref.
+console.log(objStorage.getItems());
