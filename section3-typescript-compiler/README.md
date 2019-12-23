@@ -7,3 +7,11 @@
 - Solution: Generating a ts config file by running tsc --init
   - We then can run tsc to compile all .ts files in the project. 
   - Also tsc -w will watch changes across all project changes.
+
+## Properties of tsconfig.json
+Typescripts compiler settings are configured through the tsconfig.json. Despite the file itself explaining what each property does, i will list some key important ones here.
+- target: The target javascript version you wish to compile your typescript too.
+- lib: Library files that should be included during compilation. such as 'dom'. Which is already a default value by TS.
+- allowJs: a boolean value to allow javascript files to be compiled. such as vanilla js files.
+- exclude: An array to tell typescript which files/directories shouldn't be compiled. (ain't used much)
+- include: An array to tell typescript which files/directories to compile. (ain't used much)
