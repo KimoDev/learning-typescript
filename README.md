@@ -2,6 +2,11 @@
 ## Section 2 References: Typescript Basics & Basic Types
  - Basic types in typescript: https://www.typescriptlang.org/docs/handbook/basic-types.html
 
+## Section 3 References: Typescript Compiler & Configuration
+- tsconfig Docs: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
+- Compiler Config Docs: https://www.typescriptlang.org/docs/handbook/compiler-options.html
+- VS Code TS Debugging: https://code.visualstudio.com/docs/typescript/typescript-debugging
+
 ## Section 4 References: Next-Gen Javascript & TypeScript
  - This section was skipped, due to me having proficent knowledge in this area.
  - For now you can learn more about Next-Gen JS over at this article: https://medium.com/@aminebenkeroum/get-started-with-next-gen-javascript-868e6f350e49
