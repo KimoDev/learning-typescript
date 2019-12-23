@@ -57,3 +57,8 @@ function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
 }
 // Can only be called with a string or array. As they have length properties. Whereas for example a number does not.
 console.log(countAndDescribe('Hi there!'));
+
+// The keyof constraint allows us to tell typescript that we want to ensure we have the correct structure of the object in this case.
+function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U) {
+  return obj[key];
+}
