@@ -37,3 +37,23 @@ function merge<T extends object, U extends object>(objA: T, objB: U) {
 const mergedObj = merge({name: 'Kimo', hobbies: ['Programming', 'Photography']}, {age: 100});
 // mergedObj.name; mergedObj.age; // would not work without Generics. 
 console.log(mergedObj.age);
+
+interface Lengthy {
+  length: number;
+}
+
+// This function takes a parameter that will count the length of the element. It can be a string or an array.
+// Usually, our parameter is of the Generic type we define in our function
+function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
+  let descriptionText;
+  if (element.length === 1) {
+    descriptionText = `Got 1 element`;
+  } else if (element.length > 1) {
+    descriptionText = `Got ${element.length} elements`;
+  } else {
+    descriptionText = 'Got no value';
+  }
+  return [element, descriptionText];
+}
+// Can only be called with a string or array. As they have length properties. Whereas for example a number does not.
+console.log(countAndDescribe('Hi there!'));
