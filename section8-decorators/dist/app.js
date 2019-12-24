@@ -9,6 +9,23 @@ function Logger(constructor) {
     console.log("Logging");
     console.log(constructor);
 }
+function Logger2(logString) {
+    return function (constructor) {
+        console.log(logString);
+        console.log(constructor);
+    };
+}
+function WithTemplate(template, hookId) {
+    return function (constructor) {
+        console.log('rendering Template');
+        const hookElement = document.getElementById(hookId);
+        const p = new constructor();
+        if (hookElement) {
+            hookElement.innerHTML = template;
+            hookElement.querySelector('h1').textContent = p.name;
+        }
+    };
+}
 let Person = class Person {
     constructor() {
         this.name = 'Joseph';
@@ -16,8 +33,29 @@ let Person = class Person {
     }
 };
 Person = __decorate([
-    Logger
+    Logger2('Logging - Person'),
+    WithTemplate('<h1>My Person Object</h1>', 'app')
 ], Person);
 const p1 = new Person();
 console.log(p1);
+function Log(target, propertyName) {
+    console.log('Property decorator');
+    console.log(target, propertyName);
+}
+class Product {
+    constructor(t, p) {
+        this.title = t;
+        this._price = p;
+    }
+    set price(val) {
+        val > 0 ? this._price = val : new Error('Invalid price');
+    }
+    getPriceWithTax(tax) {
+        return this._price * (1 + tax);
+    }
+}
+__decorate([
+    Log
+], Product.prototype, "title", void 0);
+const p = new Product('baby yoda', 1);
 //# sourceMappingURL=app.js.map
