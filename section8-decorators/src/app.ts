@@ -98,3 +98,10 @@ class Product {
     return this._price * (1 + tax);
   }
 }
+
+// A decorator is a function that executes when a class is defined.
+// These Decorators do not run at runtime when we call a method for example.
+// Decorators allow us to additional behind the scenes setup work when a class is defined.
+// They are not to be confused with event listeners.
+const p = new Product('Baby yoda', 19.99);
+const p2 = new Product('Jango Fett', 99.99);

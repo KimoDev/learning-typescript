@@ -85,4 +85,6 @@ __decorate([
     MethodDecorator,
     __param(0, ParameterDecorator)
 ], Product.prototype, "getPriceWithTax", null);
+const p = new Product('Baby yoda', 19.99);
+const p2 = new Product('Jango Fett', 99.99);
 //# sourceMappingURL=app.js.map
