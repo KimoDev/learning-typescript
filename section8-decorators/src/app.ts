@@ -4,8 +4,20 @@ function Logger(constructor: Function) {
   console.log("Logging");
   console.log(constructor);
 }
+
+// Factory Decorator function
+function Logger2(logString: string) {
+  return function(constructor: Function) {
+    console.log(logString);
+    console.log(constructor);
+  };
+}
+
+
+
 // Decorators run when the class is defined. Not when the class is instantiated.
 @Logger
+@Logger2('Logging - Person') // We can customise our decorator by passing in args
 class Person {
   name = 'Joseph';
 
