@@ -45,16 +45,44 @@ const p1 = new Person();
 console.log(p1);
 
 // -- Start of Property Decorators
-function Log(target: any) { // arguments depend on where we use them. 
+// @target is the constructor of the class. (Product class) 
+// @propertyName is the name of the property this factory decorator has been applied too.
+function PropertyDecorator(target: any, propertyName: string | symbol) { // arguments depend on where we use them. 
   console.log('Property decorator');
-  console.log(target, propertyName);
+  console.log(target, propertyName); 
+}
+// -- Start of Access Decorators
+// @target The prototype of the instance/object, if static instead it will be the constructor function as above ^.
+// @name
+// descriptor. 
+function AccessorDecorator(target: any, name: string, descriptor: PropertyDescriptor) {
+  console.log('Accessor decorator');
+  console.log(target);
+  console.log(name);
+  console.log(descriptor);
+}
+// Method Decorator. @target - object prototype, 
+function MethodDecorator(target: any, name: string | symbol, descriptor: PropertyDescriptor) {
+  console.log('Method decorator');
+  console.log(target);
+  console.log(name);
+  console.log(descriptor);
+}
+// Parameter Decorator. 
+// @position The position of the argument
+function ParameterDecorator(target: any, name: string | symbol, position: number) {
+  console.log('Parameter decorator');
+  console.log(target);
+  console.log(name);
+  console.log(position);
 }
 
 class Product {
-  @Log
+  @PropertyDecorator
   title: string; // This is the prototype of the object, if called on a instance
   private _price: number;
 
+  @AccessorDecorator // Accessor Decorator
   set price(val: number) {
     val > 0 ? this._price = val : new Error('Invalid price');
   }
@@ -65,9 +93,8 @@ class Product {
 
   }
 
-  getPriceWithTax(tax: number) {
+  @MethodDecorator
+  getPriceWithTax(@ParameterDecorator tax: number) {
     return this._price * (1 + tax);
   }
 }
-
-const p = new Product('baby yoda', 1);
