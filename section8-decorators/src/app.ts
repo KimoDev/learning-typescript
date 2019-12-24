@@ -12,16 +12,24 @@ function Logger2(logString: string) {
     console.log(constructor);
   };
 }
-
+// Class Decorator
 function WithTemplate(template: string, hookId: string) {
   // _ is a placeholder for the constructor. we used _ to tell typescript we care about it, but we are not using it here.
-  return function(constructor: any) {
-    console.log('rendering Template');
-    const hookElement = document.getElementById(hookId);
-    const p = new constructor();
-    if (hookElement) {
-      hookElement.innerHTML = template;
-      hookElement.querySelector('h1')!.textContent = p.name;
+  // 
+  return function<T extends {new(..._args: any[]): {name: string}}>(SuperConstructor: T) {
+    
+    // return a new constructor function that will replace the class one.
+    // @extends constructor is so we have access to all the properties of the original constructor function.
+    return class extends SuperConstructor {
+      constructor(..._args: any[]) {
+        super();
+        console.log('rendering Template');
+        const hookElement = document.getElementById(hookId);        // const p = new SuperConstructor();
+        if (hookElement) {
+          hookElement.innerHTML = template;
+          hookElement.querySelector('h1')!.textContent = this.name;
+        }
+      }
     }
   }
 }
@@ -40,9 +48,9 @@ class Person {
   }  
 }
 
-const p1 = new Person();
-
-console.log(p1);
+// UNCOMMENT THIS TO RENDER THE NAME TO THE DOM.
+// const p1 = new Person();
+// console.log(p1);
 
 // -- Start of Property Decorators
 // @target is the constructor of the class. (Product class) 

@@ -19,14 +19,18 @@ function Logger2(logString) {
     };
 }
 function WithTemplate(template, hookId) {
-    return function (constructor) {
-        console.log('rendering Template');
-        const hookElement = document.getElementById(hookId);
-        const p = new constructor();
-        if (hookElement) {
-            hookElement.innerHTML = template;
-            hookElement.querySelector('h1').textContent = p.name;
-        }
+    return function (SuperConstructor) {
+        return class extends SuperConstructor {
+            constructor(..._args) {
+                super();
+                console.log('rendering Template');
+                const hookElement = document.getElementById(hookId);
+                if (hookElement) {
+                    hookElement.innerHTML = template;
+                    hookElement.querySelector('h1').textContent = this.name;
+                }
+            }
+        };
     };
 }
 let Person = class Person {
@@ -39,8 +43,6 @@ Person = __decorate([
     Logger2('Logging - Person'),
     WithTemplate('<h1>My Person Object</h1>', 'app')
 ], Person);
-const p1 = new Person();
-console.log(p1);
 function PropertyDecorator(target, propertyName) {
     console.log('Property decorator');
     console.log(target, propertyName);
