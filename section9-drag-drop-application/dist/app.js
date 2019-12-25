@@ -5,6 +5,7 @@ class ProjectInput {
         this.domRoot = document.getElementById('app');
         const importedNode = document.importNode(this.templateElement.content, true);
         this.formElement = importedNode.firstElementChild;
+        this.formElement.id = 'user-input';
         this.attach();
     }
     attach() {

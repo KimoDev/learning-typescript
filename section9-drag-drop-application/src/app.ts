@@ -15,6 +15,7 @@ class ProjectInput {
     const importedNode = document.importNode(this.templateElement.content, true);// true so the Nodes children are also referenced too. (deep clone)
     // We need the concrete HTML. We use Form because it is the first element in our template
     this.formElement = importedNode.firstElementChild as HTMLFormElement;
+    this.formElement.id = 'user-input';
     // Then add to the dom.
     this.attach();
   }
