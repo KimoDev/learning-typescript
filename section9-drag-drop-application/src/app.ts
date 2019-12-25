@@ -1,4 +1,21 @@
-// Code goes here!
+// authobind decorator
+// @descriptor - methods are just properties that referred to functions.
+function autobind(_target: any, _methodName: string, descriptor: PropertyDescriptor) {
+  // store the method
+  const originalMethod = descriptor.value;
+
+  const adjDescriptor: PropertyDescriptor = {
+    configurable: true,
+    // Executuable when we access the method.
+    get() {
+      // binding this context to the original method
+      const boundFunc = originalMethod.bind(this);
+      return boundFunc;
+    }
+  };
+  return adjDescriptor;
+}
+
 // This project is written as an object-oriented programming project (OOP)
 
 class ProjectInput {
@@ -31,7 +48,8 @@ class ProjectInput {
     this.attach();
   }
 
-  // binds to the event listener. // will not point to the context of the class unless it is bound using .bind(this)
+  @autobind // property decorator
+  // will not point to the context of the class unless it is bound using .bind(this) or alternatively () => {}
   private submitHandler(event: Event) {
     event.preventDefault(); // prevent default submission behaviour
     console.log(this.titleInputElement.value); 
@@ -39,7 +57,11 @@ class ProjectInput {
   
   private configure() {
     // Listen to submit event of the form. Could also use an arrow function instead of .bind(this)
-    this.formElement.addEventListener('submit', this.submitHandler.bind(this)); 
+    // this.formElement.addEventListener('submit', this.submitHandler.bind(this)); 
+    
+    // We dont bind(this) here as above we applied a property decorator to this function 
+    this.formElement.addEventListener('submit', this.submitHandler); 
+
   }
 
   private attach() {
