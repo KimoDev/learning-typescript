@@ -31,14 +31,15 @@ class ProjectInput {
     this.attach();
   }
 
-  // binds to the event listener.
+  // binds to the event listener. // will not point to the context of the class unless it is bound using .bind(this)
   private submitHandler(event: Event) {
     event.preventDefault(); // prevent default submission behaviour
     console.log(this.titleInputElement.value); 
   }
-
+  
   private configure() {
-    this.formElement.addEventListener('submit', this.submitHandler.bind(this)); // will not point to the class unless it is bound (bind) to this class (this)
+    // Listen to submit event of the form. Could also use an arrow function instead of .bind(this)
+    this.formElement.addEventListener('submit', this.submitHandler.bind(this)); 
   }
 
   private attach() {
