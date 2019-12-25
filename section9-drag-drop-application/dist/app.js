@@ -6,7 +6,18 @@ class ProjectInput {
         const importedNode = document.importNode(this.templateElement.content, true);
         this.formElement = importedNode.firstElementChild;
         this.formElement.id = 'user-input';
+        this.titleInputElement = this.formElement.querySelector('#title');
+        this.descriptionInputElement = this.formElement.querySelector('#description');
+        this.peopleInputElement = this.formElement.querySelector('#people');
+        this.configure();
         this.attach();
+    }
+    submitHandler(event) {
+        event.preventDefault();
+        console.log(this.titleInputElement.value);
+    }
+    configure() {
+        this.formElement.addEventListener('submit', this.submitHandler.bind(this));
     }
     attach() {
         this.domRoot.insertAdjacentElement('afterbegin', this.formElement);
