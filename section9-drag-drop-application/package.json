@@ -12,6 +12,7 @@
     "course"
   ],
   "author": "Maximilian Schwarzmüller",
+  "sub-author": "KimoDev",
   "license": "ISC",
   "devDependencies": {
     "lite-server": "^2.5.4"
