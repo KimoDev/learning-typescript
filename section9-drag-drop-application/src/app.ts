@@ -1,3 +1,41 @@
+
+// Form Validation
+interface Validatable {
+  value: string | number; // ? is optional. same as writing | undefined
+  required?: boolean;
+  minLength?: number; // length of string
+  maxLength?: number;
+  min?: number; // value of number
+  max?: number;
+}
+
+function validate(validatableInput: Validatable) {
+  let isValid = true; // default value
+  
+  // checks if the form field input is required.
+  if (validatableInput.required) {
+    // if it is, then checks if its empty.
+    isValid == isValid && validatableInput.value.toString().trim().length !== 0
+  }
+  // check if it is a string and it is of a certain minimum length. 
+  if(validatableInput.minLength != null && typeof validatableInput.value === 'string') {
+    isValid = isValid && validatableInput.value.length >= validatableInput.minLength;
+  }
+  // check if the string is of a below the maximum length. 
+  if(validatableInput.maxLength != null && typeof validatableInput.value === 'string') {
+    isValid = isValid && validatableInput.value.length <= validatableInput.maxLength;
+  }
+  // check if the number is greater than a minimum value
+  if(validatableInput.min != null && typeof validatableInput.value === 'number') {
+    isValid = isValid && validatableInput.value >= validatableInput.min
+  }
+  // check if the number is less than than a maximum value
+  if(validatableInput.max != null && typeof validatableInput.value === 'number') {
+    isValid = isValid && validatableInput.value <= validatableInput.max
+  }
+  return isValid;
+}
+
 // authobind decorator
 // @descriptor - methods are just properties that referred to functions.
 function autobind(_target: any, _methodName: string, descriptor: PropertyDescriptor) {
@@ -51,16 +89,35 @@ class ProjectInput {
   // Function returns either a tuple of data or void. Void, we could use undefined, but we use void as it is exclusive to functions
   private gatherUserInput(): [string, string, number] | void {
     const titleInput = this.titleInputElement.value;
-    const descInput = this.descriptionInputElement.value;
+    const descriptionInput = this.descriptionInputElement.value;
     const peopleInput = this.peopleInputElement.value;
 
+    // js object of an interface type
+    const titleValidateable: Validatable = {
+      value: titleInput,
+      required: true
+    }
+
+    const descriptionValidateable: Validatable = {
+      value: descriptionInput,
+      required: true,
+      minLength: 5
+    }
+
+    const peopleValidateable: Validatable = {
+      value: +peopleInput,
+      required: true,
+      min: 1
+    }
+
     // basic validation
-    if (titleInput.trim().length === 0 || descInput.trim().length === 0 || peopleInput.trim().length === 0) {
+    if (validate(titleValidateable) && validate(descriptionValidateable) && validate(peopleValidateable)) {
+      // form inputs are valid.
+      return [titleInput, descriptionInput, +peopleInput]; // + is short js syntax to convert peopleInput into a number. Refereed to as the Unary plus operator
+    } else {
+      // One or more form inputs were invalid.
       alert('invalid input, please try again');
       return;
-    } else {
-      // + is short js syntax to convert peopleInput into a number. Refereed to as the Unary plus operator
-      return [titleInput, descInput, +peopleInput];
     }
     
   }
