@@ -48,11 +48,40 @@ class ProjectInput {
     this.attach();
   }
 
+  // Function returns either a tuple of data or void. Void, we could use undefined, but we use void as it is exclusive to functions
+  private gatherUserInput(): [string, string, number] | void {
+    const titleInput = this.titleInputElement.value;
+    const descInput = this.descriptionInputElement.value;
+    const peopleInput = this.peopleInputElement.value;
+
+    // basic validation
+    if (titleInput.trim().length === 0 || descInput.trim().length === 0 || peopleInput.trim().length === 0) {
+      alert('invalid input, please try again');
+      return;
+    } else {
+      // + is short js syntax to convert peopleInput into a number. Refereed to as the Unary plus operator
+      return [titleInput, descInput, +peopleInput];
+    }
+    
+  }
+  // reset fields to empty 
+  private clearFormInputs() {
+    this.titleInputElement.value = '';
+    this.descriptionInputElement.value = '';
+    this.peopleInputElement.value = '';
+  }
+
   @autobind // property decorator
   // will not point to the context of the class unless it is bound using .bind(this) or alternatively () => {}
   private submitHandler(event: Event) {
     event.preventDefault(); // prevent default submission behaviour
-    console.log(this.titleInputElement.value); 
+    const userInput = this.gatherUserInput();
+    // tuple is not a js type. typles are just arrays in js.
+    if (Array.isArray(userInput)) {
+      const [title, desc, people] = userInput;
+      console.log(title, desc, people);
+      this.clearFormInputs();
+    }
   }
   
   private configure() {
